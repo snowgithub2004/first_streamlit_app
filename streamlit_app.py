@@ -33,7 +33,7 @@ try:
       streamlit.dataframe(back_from_function)
 except URLError as e:
   streamlit.error()
-streamlit.stop()
+
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
@@ -46,3 +46,5 @@ streamlit.write('Thanks for adding ', add_my_fruit)
 
 # this will not work correctly
 mycur.execute("insert into fruit_load_list ('from streamlit')")
+
+streamlit.stop()
